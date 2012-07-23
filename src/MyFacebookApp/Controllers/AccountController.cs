@@ -38,7 +38,7 @@ public class AccountController : Controller
         return Redirect(uri.ToString());
     }
 
-public ActionResult FbAuth()
+public ActionResult FbAuth(string returnUrl)
 {
     var client = new FacebookClient();
     var oauthResult = client.ParseOAuthCallbackUrl(Request.Url);
@@ -83,9 +83,14 @@ public ActionResult FbAuth()
     FormsAuthentication.SetAuthCookie(email, false);
 
     // Get the Auth Redirect URL
-    var redirectUrl = FormsAuthentication.GetRedirectUrl(email, false);
-        
-    return Redirect(redirectUrl);
+    if (String.IsNullOrEmpty(returnUrl))
+    {
+        return Redirect("/App");
+    }
+    else
+    {
+        return Redirect(returnUrl);
+    }
 }
 
 }
