@@ -31,7 +31,7 @@ public class AccountController : Controller
         var uri = client.GetLoginUrl(new
         {
             client_id = ConfigurationManager.AppSettings["FacebookAppId"],
-            redirect_uri = redirectUri.Uri.ToString(),
+            redirect_uri = redirectUri.Uri.AbsoluteUri,
             scope = "email",
         });
 
@@ -50,7 +50,7 @@ public ActionResult FbAuth()
     dynamic result = client.Get("/oauth/access_token", new
     {
         client_id = ConfigurationManager.AppSettings["FacebookAppId"],
-        redirect_uri = redirectUri.Uri.ToString(),
+        redirect_uri = redirectUri.Uri.AbsoluteUri,
         client_secret = ConfigurationManager.AppSettings["FacebookAppSecret"],
         code = oauthResult.Code,
     });
