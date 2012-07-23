@@ -28,12 +28,10 @@ public class AccountController : Controller
         //               &redirect_uri=YOUR_REDIRECT_URI
         //               &scope=COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES
         //               &state=SOME_ARBITRARY_BUT_UNIQUE_STRING
-        // Note: We remote ports 80 and 443 from the URL as this will cause
-        // an error with Facebook authentication in production
         var uri = client.GetLoginUrl(new
         {
             client_id = ConfigurationManager.AppSettings["FacebookAppId"],
-            redirect_uri = redirectUri.ToString().Replace(":80", String.Empty).Replace(":443", String.Empty),
+            redirect_uri = redirectUri.Uri.ToString(),
             scope = "email",
         });
 
@@ -52,7 +50,7 @@ public ActionResult FbAuth()
     dynamic result = client.Get("/oauth/access_token", new
     {
         client_id = ConfigurationManager.AppSettings["FacebookAppId"],
-        redirect_uri = redirectUri.ToString().Replace(":80", String.Empty).Replace(":443", String.Empty),
+        redirect_uri = redirectUri.Uri.ToString(),
         client_secret = ConfigurationManager.AppSettings["FacebookAppSecret"],
         code = oauthResult.Code,
     });
