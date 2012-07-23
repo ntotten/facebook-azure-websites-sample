@@ -1,0 +1,8 @@
+# Visual Studio Ignores
+[Bb]in/
+obj/
+PublishProfiles/
+
+*.sln.cache
+*.suo
+*.user
