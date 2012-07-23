@@ -2,6 +2,7 @@
 [Bb]in/
 obj/
 PublishProfiles/
+packages/
 
 *.sln.cache
 *.suo
