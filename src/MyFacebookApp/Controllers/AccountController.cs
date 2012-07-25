@@ -82,7 +82,7 @@ public ActionResult FbAuth(string returnUrl)
     // Set the Auth Cookie
     FormsAuthentication.SetAuthCookie(email, false);
 
-    // Get the Auth Redirect URL
+    // Redirect to the return url if availible
     if (String.IsNullOrEmpty(returnUrl))
     {
         return Redirect("/App");
