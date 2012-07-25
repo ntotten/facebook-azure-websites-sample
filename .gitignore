@@ -7,8 +7,3 @@ packages/
 *.sln.cache
 *.suo
 *.user
-
-# Config files
-src/MyFacebookApp/Web.config
-src/MyFacebookApp/Web.Debug.config
-src/MyFacebookApp/Web.Release.config
